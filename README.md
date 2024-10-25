@@ -1,4 +1,4 @@
-# samkaj's MacOS rice
+# samkaj's macOS rice
 
 ## Software used
 
@@ -15,3 +15,7 @@ I always use the latest MacOS version.
 - `Desktop & Dock > Automatically hide and show the Dock`
 - `Control Centre > Automatically hide and show the menu bar > Always`
 
+## Misc
+
+- `font` - JetBrainsMono Nerd Font Mono
+- `wallpaper` - Generated with [color4bg.com](https://www.color4bg.com/en/)
