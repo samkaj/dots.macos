@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+source "$CONFIG_DIR/colors.sh"
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
+
+sketchybar --add event aerospace_workspace_change
+LABELS=("" "" "" "󰒓" "󰓇" "" "" "" "")
+INDEX=0
+
+for sid in $(aerospace list-workspaces --all); do
+    label="${LABELS[$INDEX]}"
+    
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid \
+        background.color=0x44ffffff \
+        background.corner_radius=5 \
+        background.height=20 \
+        background.drawing=off \
+        icon.padding_left=0 \
+        icon.padding_right=0 \
+        label.padding_left=3 \
+        label.padding_right=3 \
+        label="$label" \
+        click_script="aerospace workspace $sid" \
+        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+    
+    INDEX=$((INDEX + 1))
+done
+
+default=(
+  padding_left=4
+  padding_right=4
+  icon.font="JetBrainsMono Nerd Font Mono:Regular:20.0"
+  label.font="JetBrainsMono Nerd Font Mono:Regular:14.0"
+  icon.color=0xffc9c7cd
+  label.color=0xffc9c7cd
+  icon.padding_left=4
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=4
+)
+sketchybar --default "${default[@]}"
+
+sketchybar --add item chevron left \
+           --set chevron icon='' label.drawing=off \
+           --add item front_app left \
+           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched \
+
+sketchybar --add item clock right \
+           --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
+           --add item volume right \
+           --set volume script="$PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change \
+           --add item battery right \
+           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change \
+           --add item kb right \
+           --set kb update_freq=1 icon=󰌌 script="$PLUGIN_DIR/kb.sh" \
+           --add item net right \
+           --set net update_freq=120 icon= script="$PLUGIN_DIR/wifi.sh" 
+
+sketchybar --update
