@@ -1,5 +1,7 @@
 # samkaj's macOS rice
 
+![example](./pics/example.png)
+
 ## Software used
 
 - `neovim` - editor
