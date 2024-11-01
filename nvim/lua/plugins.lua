@@ -70,9 +70,9 @@ local plugins = {
 	},
 
 	-- Copilot
-	--{
-	--	"github/copilot.vim",
-	--},
+	{
+		"github/copilot.vim",
+	},
 
 	-- Fashion
 	{

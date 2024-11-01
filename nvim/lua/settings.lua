@@ -2,9 +2,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-vim.cmd[[ autocmd FileType tex set textwidth=80 ]]
+vim.g.copilot_filetypes = { markdown = false }
 
-vim.cmd[[let g:neoformat_enabled_javascript = ['prettier'] ]]
+vim.cmd([[ autocmd FileType tex set textwidth=80 ]])
+vim.cmd([[ autocmd FileType md set textwidth=80 ]])
+
+vim.cmd([[let g:neoformat_enabled_javascript = ['prettier'] ]])
 
 -- Spaces
 vim.opt.tabstop = 4
@@ -24,12 +27,12 @@ vim.cmd("command! X x")
 vim.cmd("command! Xa xa")
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.tabstop = 2
-    vim.opt_local.expandtab = true
-  end,
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+		vim.opt_local.expandtab = true
+	end,
 })
 
 -- Highlight on yank
@@ -49,7 +52,7 @@ vim.keymap.set("n", "<leader>fd", builtin.git_files, {})
 vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {})
 vim.keymap.set("n", "<leader>fc", builtin.lsp_references, {})
 vim.keymap.set("n", "<leader>vd", function()
-    vim.diagnostic.open_float()
+	vim.diagnostic.open_float()
 end, opts)
 
 -- Format
@@ -72,12 +75,11 @@ vim.cmd("set noshowmode")
 -- Yank into system clipboard
 vim.opt.clipboard = "unnamedplus"
 
-require('nvim-ts-autotag').setup({
-  opts = {
-    -- Defaults
-    enable_close = true, -- Auto close tags
-    enable_rename = true, -- Auto rename pairs of tags
-    enable_close_on_slash = false -- Auto close on trailing </
-  },
+require("nvim-ts-autotag").setup({
+	opts = {
+		-- Defaults
+		enable_close = true, -- Auto close tags
+		enable_rename = true, -- Auto rename pairs of tags
+		enable_close_on_slash = false, -- Auto close on trailing </
+	},
 })
-
