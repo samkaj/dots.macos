@@ -2,10 +2,13 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-vim.g.copilot_filetypes = { markdown = false }
+vim.g.copilot_filetypes = { markdown = false, tex = false }
 
 vim.cmd([[ autocmd FileType tex set textwidth=80 ]])
 vim.cmd([[ autocmd FileType md set textwidth=80 ]])
+-- enable spell check for tex and md files 
+vim.cmd([[ autocmd FileType tex setlocal spell ]])
+vim.cmd([[ autocmd FileType md setlocal spell ]])
 
 vim.cmd([[let g:neoformat_enabled_javascript = ['prettier'] ]])
 
