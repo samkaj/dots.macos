@@ -7,7 +7,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
 
 sketchybar --add event aerospace_workspace_change
-LABELS=("" "" "" "󰒓" "󰓇" "󰨞" "" "" "")
+LABELS=("" "" "" "󰒓" "󰓇" "󰨞" "" "" "")
 INDEX=0
 
 for sid in $(aerospace list-workspaces --all); do
